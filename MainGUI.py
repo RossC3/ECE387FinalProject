@@ -5,7 +5,7 @@ import time
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(26,OUT)
+GPIO.setup(26,GPIO.OUT)
 pygame.init()
 
 sWidth = 1000
@@ -67,13 +67,14 @@ deadLiftButton = button((0, 255, 0), bx2, by2, blength, bheight, 'Dead Lift')
 quitButton = button((255, 0, 0), bx3, by3, blength, bheight, 'Quit')
 
 
-
+#redraws original window on start screen
 def redrawWindow():
     win.fill((135, 206, 250))
     squatButton.draw(win, (0, 0, 0))
     deadLiftButton.draw(win, (0, 0, 0))
     quitButton.draw(win, (0, 0, 0))
 
+#creates screen for calibrating the belt for an exercise
 def calibrationScreen():
     global cal, bx1, by1, by2, bx3, by3, blength, bheight, LTilt, RTilt, FTilt, BTilt
 
@@ -124,6 +125,7 @@ def calibrationScreen():
                 if backButton.isOver(pos) and cal:
                     t = False
 
+#creates screen the user sees when performing an exercise
 def liftScreen():
     global cal, bx1, by1, by2, bx3, by3, blength, bheight, LTilt, RTilt, FTilt, BTilt
     TiltControls.setOrientation(1)
@@ -170,7 +172,7 @@ def liftScreen():
                 GPIO.output(26,False)
 
     time.sleep(.5)
-            
+#creates screen that gives the user the option to lift or calibrate the belt            
 def exerciseScreen():
     global cal, bx1, by1, by2, bx3, by3, blength, bheight,squatting, deadLifting,run
     liftButton = button((0, 255, 0), bx1, by1, blength, bheight, 'Lift')

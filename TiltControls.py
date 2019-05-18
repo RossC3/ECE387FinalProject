@@ -43,10 +43,10 @@ def setSensitivity(pa, na, pb, nb):
     global nhSense
     global nvSense
 
-    phSense = pa + 2
-    nhSense = na - 2
+    phSense = pa + 5
+    nhSense = na - 5
     pvSense = pb + 2
-    nvSense = nb - 2
+    nvSense = nb - 5
     
 #detects if the controller should move right or is past the Right degree sensitivity
 def Right():
